@@ -4,7 +4,7 @@
 // It listens for the response from the parent iframe after sending a JSON-RPC request (e.g., eth_signMessage).
 // The parent iframe returns a message with a signed message hash in the expected format.
 
-export type OffChainSignMessageResponse = {
+export type SignMessageResponse = {
   messageHash: string;
 };
 
@@ -21,7 +21,7 @@ export type OffChainSignMessageResponse = {
  *   // Further processing with the message hash can be done here.
  * });
  */
-export function receiveSignedMessage(requestId: string, callback: (response: OffChainSignMessageResponse) => void) {
+export function receiveSignedMessage(requestId: string, callback: (response: SignMessageResponse) => void) {
   // Define a handler for the 'message' event to process messages from the parent iframe
   function messageHandler(event: MessageEvent) {
     const { data } = event;
@@ -34,7 +34,7 @@ export function receiveSignedMessage(requestId: string, callback: (response: Off
       data.result.messageHash // The expected structure
     ) {
       // Construct the response based on the received data
-      const response: OffChainSignMessageResponse = {
+      const response: SignMessageResponse = {
         messageHash: data.result.messageHash,
       };
 
