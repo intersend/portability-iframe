@@ -16,7 +16,7 @@ The app sends an `eth_signMessage` request to the parent iframe using standard J
 
 ```mermaid
 graph TD
-    A[Your App] -->|Sends JSON-RPC| B[User Client]
+    A[Your App] -->|Sends message via iframe| B[User Client]
     B -->|eth_signMessage| C[Handles Transaction]
     C -->|Returns Response| D[Your App]
     D -->|Receives messageHash| E[Process Transaction]
